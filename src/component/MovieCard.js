@@ -1,8 +1,10 @@
 import React from 'react';
-import {Card, CardGroup} from 'react-bootstrap';
-import Rating from 'react-rating';
+import {Card} from 'react-bootstrap';
+import ReactStars from "react-stars";
+import Rating from "react-rating";
+import { Route, Routes,Link } from 'react-router-dom';
+import DescriptionPage  from './descriptionPage';
 function MovieCard({movie}) {
-
     return (
         <>
   
@@ -11,16 +13,33 @@ function MovieCard({movie}) {
         <Card.Body style={{textAlign:'center'}} >
           <Card.Title >{movie.title}</Card.Title>
           <Card.Text className='text' >
-            <p style={{textAlign:"left"}}>{movie.title}</p>
+            <p style={{textAlign:"left"}}>{movie.title}
+            {movie.rating} 
+            </p>
             {movie.description}
           </Card.Text>
-        
+         
         </Card.Body>
-       <Card.Footer style={{textAlign:'center'}}>
-       <Rating style={{color:'yellow'}} initialRating={movie.rating}
-           readonly />
+       <Card.Footer style={{marginLeft:40}}>
+
+       <ReactStars  
+             count={5}
+             value={movie.rating}
+             size={30}
+             activeColor="#ffd700"
+             edit={false}
+             />
+     
        </Card.Footer>
+       <p style={{textAlign:'center',borderColor:'green',backgroundColor:'green',fontSize:20,borderRadius:30}}>
+       Rating:{movie.rating}/5
+       </p>
+    
+    
       </Card>
+
+
+  
  </>)
   }
 

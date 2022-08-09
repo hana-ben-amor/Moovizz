@@ -1,11 +1,11 @@
-import {Button,InputGroup,Modal,Form, FormGroup} from "react-bootstrap"
+import {Button,Modal,Form} from "react-bootstrap"
 import {useState,useEffect} from 'react'
 
 function AddMovie(props) {
-     //update
-    // useEffect(()=>{
-    //     console.log("app was updated")
-    // })
+  
+    useEffect(()=>{
+        console.log("app was updated")
+    })
 
      //Mount 
     //  useEffect(()=>{
@@ -16,7 +16,8 @@ function AddMovie(props) {
         title:"",
         description:"",
         posterURL:"",
-        rating:""
+        rating:0,
+        trailerLink:""
     }
     )
     const handleClose = () => setShow(false);
@@ -61,6 +62,14 @@ function AddMovie(props) {
                       autoFocus
                       onChange={handleChange}
                     />
+                        <Form.Label>Trailer Link </Form.Label>
+                    <Form.Control
+                    name="trailerLink"
+                      type="text"
+                      placeholder="Trailer of the movie"
+                      autoFocus
+                      onChange={handleChange}
+                    />
                   </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label htmlFor="basic-url">Poster URL</Form.Label>
@@ -73,11 +82,13 @@ function AddMovie(props) {
                    
 
                   <Form.Select aria-label="Floating label select example" value={newMovie.rating} onChange={handleChange} name="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
+                  <option >Rating</option>
+                  <option key={0} value="1">1</option>
+                  <option key={1} value="2">2</option>
+                  <option key={2} value="2">3</option>
+                  <option key={3} value="3">4</option>
+                  <option key={4} value="5">5</option>
+
                   </Form.Select>
                
                 </Form>
