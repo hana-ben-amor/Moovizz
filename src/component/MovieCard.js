@@ -1,20 +1,20 @@
 import React from 'react';
 import {Card} from 'react-bootstrap';
 import ReactStars from "react-stars";
-import Rating from "react-rating";
-import { Route, Routes,Link } from 'react-router-dom';
-import DescriptionPage  from './descriptionPage';
+import {BrowserRouter,Route, Routes,Link,useParams } from 'react-router-dom';
+import DescriptionPage  from './DescriptionPage';
 function MovieCard({movie}) {
     return (
         <>
-  
-        <Card className="img" style={{width:250,margin:10,position:'relative'}}>
+
+   <Link to={`/descriptionPage/${movie.id}`} style={{textDecoration:'none',color:'black'}} >
+        <Card className="img" style={{width:250,margin:20,position:'relative'}} 
+             >
         <Card.Img   variant="top" src={movie.posterURL} style={{height:400}} />
         <Card.Body style={{textAlign:'center'}} >
           <Card.Title >{movie.title}</Card.Title>
           <Card.Text className='text' >
-            <p style={{textAlign:"left"}}>{movie.title}
-            {movie.rating} 
+            <p style={{textAlign:"left"}}>Overview 
             </p>
             {movie.description}
           </Card.Text>
@@ -31,16 +31,11 @@ function MovieCard({movie}) {
              />
      
        </Card.Footer>
-       <p style={{textAlign:'center',borderColor:'green',backgroundColor:'green',fontSize:20,borderRadius:30}}>
-       Rating:{movie.rating}/5
-       </p>
-    
-    
       </Card>
+      </Link>
 
-
-  
  </>)
-  }
+ 
+    }
 
 export default MovieCard

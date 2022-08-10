@@ -2,6 +2,7 @@ import React from 'react'
 import MovieCard from './MovieCard';
 function MovieList(props) {
   return (<>
+  
         <div>
           
         <div style={{display:'flex',flexDirection:'row',flex:2,flexWrap:'wrap',padding:10,margin:200}}>

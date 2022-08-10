@@ -1,5 +1,6 @@
 import {Button,Modal,Form} from "react-bootstrap"
 import {useState,useEffect} from 'react'
+import { useId } from "react";
 
 function AddMovie(props) {
   
@@ -13,6 +14,7 @@ function AddMovie(props) {
     // },[])
     const [show,setShow]=useState(false);
     const [newMovie,setNewMovie]=useState({
+      id:useId(),
         title:"",
         description:"",
         posterURL:"",

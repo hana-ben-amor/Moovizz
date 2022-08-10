@@ -1,5 +1,8 @@
 import './App.css';
-import React, { useState,useMemo ,useEffect} from 'react'
+import { useId } from "react";
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import React, { useState,useEffect} from 'react'
+import DescriptionPage from './component/DescriptionPage';
 import MovieList from "./component/MovieList"
 import Filter from "./component/Filter"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,21 +12,23 @@ function App() {
   const [filter,setFilter]=useState("")
   const [value, setValue] = useState(0);
   const [movieList,setMovieList]=useState([
-    {
+    { id:useId(),
       title:"The Smurfs",
       description:"When evil Gargamel tries to Capture them,the Smurfs flee their woodland home,pass through a magic portal and find themselves stranded in New York",
       posterURL:"https://i.ebayimg.com/images/g/d5IAAOSw5VNhGGzo/s-l500.jpg",
        rating:4,
-       trailerLink:"https://www.youtube.com/embed/vu1qZCG6Yo"
+       trailerLink:"https://www.youtube.com/embed/JLMoubBxt_0 "
     },
     { 
+      id:useId(),
       title:"Space Jam",
       description:"In a desperate attempt to win a basketball match and earn their freedom, the Looney Tunes seek the aid of retired basketball champion, Michael Jordan.",
       posterURL:"https://cdn.europosters.eu/image/750/posters/space-jam-2-welcome-to-the-jam-i112427.jpg" ,
        rating:3,
-       trailerLink:"https://www.youtube.com/embed/0H2cIbUGJJc"},
+       trailerLink:"https://www.youtube.com/embed/0H2cIbUGJJc "},
   
        {
+        id:useId(),
         title:"The Croods",
         description:"After their cave is destroyed, a caveman family must trek through an unfamiliar fantastical world with the help of an inventive boy.",
         posterURL:"http://imageservice.sky.com/contentid/A5EK6sKrAaybUAPEgrDyU/BOXART?territory=GB&language=eng",
@@ -31,18 +36,21 @@ function App() {
          trailerLink:"https://www.youtube.com/embed/WvOgvFtcIAw"
       },
       {
-        title:"Kung Fu Panda:The Dragon Knight",
+        id:useId(),
+        title:"Kung Fu Panda",
         description:"Follows Po who partners up with a no-nonsense English knight named Wandering Blade to find a collection of four powerful weapons before a mysterious pair of weasels do, and save the world from destruction.",
         posterURL:"https://m.media-amazon.com/images/M/MV5BOGE1MWRiYzctYjQ3MC00YWI1LTg1MTgtMjUwYzRmMzI0NGIwXkEyXkFqcGdeQXVyMTQ3NDcxMzg4._V1_.jpg" ,
          rating:2,
          trailerLink:"https://www.youtube.com/embed/MYy7oGQiSqI"},
          {
+          id:useId(),
            title:"Rush Hour",
            description:"A loyal and dedicated Hong Kong Inspector teams up with a reckless and loudmouthed L.A.P.D. detective to rescue the Chinese Consul's kidnapped daughter, while trying to arrest a dangerous crime lord along the way.",
            posterURL:"https://media3.woopic.com/api/v1/images/1825%2Faudiovisual%2Fmovie%2F093%2F563%2F5509f6c4045235b87032498665%2Fmovies-28795-86715.jpg?quality=85&saveas=webp&saveasquality=70&format=270x360&facedetect=1",
             rating:4,
             trailerLink:"https://www.youtube.com/embed/SCTzYY95Aw4"},
             {
+              id:useId(),
               title:"The Last Dance",
               description:"This docuseries chronicles the rise of superstar Michael Jordan and the 1990s Chicago Bulls, with unaired footage from an unforgettable 1997-98 season.",
               posterURL:"https://mir-s3-cdn-cf.behance.net/project_modules/1400/8433ca97660509.5ecaa1535113d.png" ,
@@ -81,11 +89,27 @@ function App() {
   return (
     <div className="App">
       <header header className="App-header">
-     <AddMovie  movies={movieList} handleAddMovie={handleAddMovie} />
+      <Routes>
+        <Route path="/" element={<>
+          <AddMovie  movies={movieList} handleAddMovie={handleAddMovie} />
       <Filter  handleFilter={handleFilter} handleFilterRating={handleFilterRating} />
       <MovieList movies={movieList}  list={(movieList.filter(elm=>elm.title.toUpperCase().includes(filter.toUpperCase())&& elm.rating>=value))}/>
       <footer> <small style={{color:'white'}}>&copy; Copyright {2022}, HANA BEN AMOR</small> </footer> 
+        </>} />
+
+      </Routes>
+     
+     
       </header>
+
+
+ <Routes>
+   <Route path="/descriptionPage/:id" element={<DescriptionPage movie={movieList} />}/>
+ </Routes>
+
+ 
+
+
     </div>
   );
   
